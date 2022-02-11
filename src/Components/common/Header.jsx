@@ -4,7 +4,6 @@ import { PALLETS } from 'Styles/theme';
 import { HeaderLOGO } from 'Assets/Images/index';
 import { HomeLOGO } from 'Assets/Icons/index';
 
-
 const Header = () => {
   return (
     <HeaderContainer>
@@ -13,15 +12,15 @@ const Header = () => {
         <Logo src={HeaderLOGO} />
       </Wrapper>
     </HeaderContainer>
-  )
-}
+  );
+};
 
 export default Header;
 
 const HeaderContainer = styled.header`
   width: 100%;
   height: 100px;
-  background-color: ${PALLETS.BLUE}; 
+  background-color: ${PALLETS.BLUE};
   display: flex;
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 2px 2px rgba(0, 0, 0, 0.24);
 `;
@@ -38,6 +37,6 @@ const HomeLogo = styled.img`
 `;
 
 const Logo = styled.img`
-  width: 120px;   
+  width: 120px;
   height: 40px;
 `;
