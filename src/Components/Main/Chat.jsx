@@ -3,9 +3,16 @@ import styled from 'styled-components';
 import { PALLETS } from 'Styles/theme';
 import {Input} from 'Components/common/Input';
 import Button from 'Components/common/Button';
-import { DaProfile } from 'Assets/Images';
+import {useSelector, useDispatch} from 'react-redux';
 
 const Chat = () => {
+  const dispatch = useDispatch();
+
+  const userName = useSelector(state => state.login.userName);
+
+  console.log(userName);
+
+
   return (
     <ChatBar>
       <ChatTitle>
