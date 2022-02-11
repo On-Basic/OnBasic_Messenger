@@ -14,15 +14,15 @@ function Modal({
 }) {
   const onMaskClick = (e) => {
     if (e.target === e.currentTarget) {
-      onClose(e)
+      onClose(e);
     }
-  }
+  };
 
   const close = (e) => {
     if (onClose) {
-      onClose(e)
+      onClose(e);
     }
-  }
+  };
 
   return (
     <>
@@ -35,39 +35,39 @@ function Modal({
       >
         <ModalInner tabIndex="0" className="modal-inner">
           {children}
-          {closable && 
-          <Wrapper>
-          <Button 
-          className="modal-close" 
-          ClickFunc={close}
-          Width="120px"
-          Height="50px"
-          fontSize="25px"
-          backgroundColor={PALLETS.WHITE}
-          Color={PALLETS.BLUE}
-          Content="취소"
-          />
-          <Button 
-            className="modal-close" 
-            ClickFunc={close}
-            Width="120px"
-            Height="50px"
-            fontSize="25px"
-            backgroundColor={PALLETS.BLUE}
-            Color={PALLETS.WHITE}
-            Content="확인"
-          />
-          </Wrapper>
-          }
+          {closable && (
+            <Wrapper>
+              <Button
+                className="modal-close"
+                ClickFunc={close}
+                Width="120px"
+                Height="50px"
+                fontSize="25px"
+                backgroundColor={PALLETS.WHITE}
+                Color={PALLETS.BLUE}
+                Content="취소"
+              />
+              <Button
+                className="modal-close"
+                ClickFunc={close}
+                Width="120px"
+                Height="50px"
+                fontSize="25px"
+                backgroundColor={PALLETS.BLUE}
+                Color={PALLETS.WHITE}
+                Content="확인"
+              />
+            </Wrapper>
+          )}
         </ModalInner>
       </ModalWrapper>
     </>
-  )
+  );
 }
 
 Modal.propTypes = {
   visible: PropTypes.bool,
-}
+};
 
 const ModalWrapper = styled.div`
   box-sizing: border-box;
@@ -80,7 +80,7 @@ const ModalWrapper = styled.div`
   z-index: 1000;
   overflow: auto;
   outline: 0;
-`
+`;
 
 const ModalOverlay = styled.div`
   box-sizing: border-box;
@@ -92,7 +92,7 @@ const ModalOverlay = styled.div`
   right: 0;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 999;
-`
+`;
 
 const ModalInner = styled.div`
   box-sizing: border-box;
@@ -107,11 +107,11 @@ const ModalInner = styled.div`
   transform: translateY(-50%);
   margin: 0 auto;
   padding: 50px 30px;
-`
+`;
 
 const Wrapper = styled.div`
   display: flex;
-  margin : 150px 100px;
+  margin: 150px 100px;
 `;
 
 export default Modal;
