@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from 'Components/common/Header';
-import { MainLOGO } from 'Assets/Images/index';
 import Login from 'Components/Login/Login';
+import ProfileImage from 'Components/common/ProfileImage';
 import { PALLETS } from 'Styles/theme';
 import styled from 'styled-components';
 
@@ -12,7 +12,7 @@ const LoginPage = () => {
       <LoginWrapper>
         {/* <Logo src={MainLOGO} /> */}
         <MainLogo>OnBasic Messenger</MainLogo>
-        <SetImage />
+        <ProfileImage />
         <LoginInput>
           <Login />
         </LoginInput>

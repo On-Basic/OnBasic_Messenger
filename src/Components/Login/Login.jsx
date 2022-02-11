@@ -12,6 +12,7 @@ const Login = () => {
   const [userData, setUserData] = useState({
     userId: '',
     userName: '',
+    profileImage: '',
   });
 
   const { userId, userName } = userData;
