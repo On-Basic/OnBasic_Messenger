@@ -1,7 +1,7 @@
 import React from 'react';
-import { Input } from 'Components/common/Input';
-import Button from 'Components/common/Button';
 import Header from 'Components/common/Header';
+import Login from 'Components/Login/Login';
+import ProfileImage from 'Components/common/ProfileImage';
 import { PALLETS } from 'Styles/theme';
 import styled from 'styled-components';
 
@@ -10,26 +10,12 @@ const LoginPage = () => {
     <Container>
       <Header />
       <LoginWrapper>
-        <LoginTitle>
-          <span>OnBasic</span>
-          <br />
-          <span>Messenger</span>
-        </LoginTitle>
-        <SetImage></SetImage>
-        <Input id={'-input'} width="200px" placeholder={'ID'} value={''} />
-        <Input
-          id={'-input'}
-          width="200px"
-          placeholder={'NICKNAME'}
-          value={''}
-        />
-        <Button
-          width={'495px'}
-          height={'100px'}
-          fontSize={'20px'}
-          backgroundcolor={PALLETS.BLUE}
-          color={'#000000'}
-        />
+        {/* <Logo src={MainLOGO} /> */}
+        <MainLogo>OnBasic Messenger</MainLogo>
+        <ProfileImage />
+        <LoginInput>
+          <Login />
+        </LoginInput>
       </LoginWrapper>
     </Container>
   );
@@ -39,13 +25,26 @@ export default LoginPage;
 
 const Container = styled.div`
   width: 100%;
+  height: 100%;
+  background: #000;
+  position: relative;
+  text-align: center;
+  display: flex;
+  item-aligns: center;
 `;
 
-const LoginWrapper = styled.div``;
+const LoginWrapper = styled.div`
+  width: 300px;
+  position: absolute;
+  left: 50%;
+  top: 150%;
+  margin-left: -150px;
+`;
 
-const LoginTitle = styled.div`
-  font-size: 45px;
+const MainLogo = styled.div`
+  font-size: 50px;
   font-weight: 600;
+  margin: 10px 0;
 `;
 
 const SetImage = styled.div`
@@ -53,4 +52,12 @@ const SetImage = styled.div`
   height: 247px;
   border: 8px solid ${PALLETS.BLUE};
   border-radius: 50%;
+  margin: 20px 18px;
+`;
+
+const LoginInput = styled.div`
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;

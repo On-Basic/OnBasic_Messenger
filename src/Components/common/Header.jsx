@@ -37,6 +37,5 @@ const HomeLogo = styled.img`
 `;
 
 const Logo = styled.img`
-  width: 120px;
   height: 40px;
 `;
