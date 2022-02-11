@@ -9,8 +9,7 @@ const Chat = () => {
   return (
     <ChatBar>
       <ChatTitle>
-        <UserImg src={DaProfile}/>
-        <UserName>Da</UserName>
+        Here is OnBasic
       </ChatTitle>
       <ChatContent />
       <InputContent>
@@ -40,23 +39,14 @@ const ChatBar = styled.div`
 
 const ChatTitle = styled.div`
   display: flex;
-  background-color: ${PALLETS.GRAY};
-`;
-
-const UserImg = styled.img`
-  width: 60px;
-  height: 60px;
-  padding: 10px;
-`;
-
-const UserName = styled.div`
-  height: 60px;
+  height: 100px;
+  color: ${PALLETS.WHITE};
+  background-color: ${PALLETS.BLUE};
   font-size: 24px;
-  padding: 20px;
 `;
 
 const ChatContent = styled.div`
-  height: 700px;
+  height: 675px;
   overflow-y: scroll;
 `;
 
