@@ -1,8 +1,13 @@
-import React from 'react'
+import React from 'react';
+import Header from 'Components/common/Header';
+import Chat from 'Components/Main/Chat';
 
 const MainPage = () => {
   return (
-    <div>MainPage</div>
+    <>
+      <Header />
+      <Chat />
+    </>
   )
 }
 
