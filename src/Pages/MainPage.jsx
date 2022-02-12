@@ -8,7 +8,7 @@ const MainPage = () => {
       <Header />
       <Chat />
     </>
-  );
-};
+  )
+}
 
-export default MainPage;
+export default MainPage
