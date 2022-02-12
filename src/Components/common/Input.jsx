@@ -30,6 +30,7 @@ const Inputspace = styled.input`
   width: ${(props) => props.width || '100%'};
   border: 1px solid ${PALLETS.GRAYY};
   border-radius: 8px;
+  margin: 0 5px;
   padding: 0 15px;
   height: 45px;
   &::placeholder {
