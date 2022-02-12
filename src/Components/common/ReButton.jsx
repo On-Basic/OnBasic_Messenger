@@ -32,11 +32,11 @@ const ReIcon = styled.img`
 `;
 
 const ReplayBtn = styled.button`
-  background-color: ${PALLETS.LIGHTGRAY};
+  background-color: ${PALLETS.SKY};
   border: none;
 `;
 
 const RemoveBtn = styled.button`
-  background-color: ${PALLETS.LIGHTGRAY};
+  background-color: ${PALLETS.SKY};
   border: none;
 `;
