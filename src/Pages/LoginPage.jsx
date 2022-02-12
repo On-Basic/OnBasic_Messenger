@@ -26,7 +26,7 @@ export default LoginPage;
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  background: #000;
+  background: ${PALLETS.BLACK};
   position: relative;
   text-align: center;
   display: flex;
