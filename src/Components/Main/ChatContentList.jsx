@@ -1,12 +1,14 @@
-import React, { useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { PALLETS } from 'Styles/theme';
 import ReButton from 'Components/common/ReButton';
+import Modal from 'Components/common/Modal';
 
 const ChatContentList = ({ chatItem }) => {
   const scrolleRef = useRef(null);
   const chatState = useSelector((state) => state.message);
+  const [modalVisible, setmodalVisible] = useState(false);
 
   const scrollToBottom = useCallback(() => {
     if (chatState) {
@@ -21,6 +23,19 @@ const ChatContentList = ({ chatItem }) => {
     scrollToBottom();
   }, [scrollToBottom]);
 
+  const Replay = () => {
+    console.log('답장 ... ');
+  }
+
+  const Remove = () => {
+    setmodalVisible(!modalVisible);
+    console.log(modalVisible);
+  }
+
+  const closeModal = () => {
+    setmodalVisible(false);
+  }
+
   return (
     <UserWrapper>
       <div>
@@ -34,7 +49,19 @@ const ChatContentList = ({ chatItem }) => {
           <Content>{chatItem.message}</Content>
         </ChatMessageContent>
       </div>
-      <ReButton />
+      <ReButton 
+          ReplayFunc={Replay}
+          RemoveFunc={Remove}
+      />
+       {modalVisible && 
+          <Modal
+            visible={modalVisible}
+            closable={true}
+            maskClosable={true}
+            onClose={closeModal}
+          >
+            삭제하시겠습니까?
+          </Modal>}        
     </UserWrapper>
   );
 };
