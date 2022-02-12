@@ -47,13 +47,13 @@ const MainLogo = styled.div`
   margin: 10px 0;
 `;
 
-const SetImage = styled.div`
-  width: 247px;
-  height: 247px;
-  border: 8px solid ${PALLETS.BLUE};
-  border-radius: 50%;
-  margin: 20px 18px;
-`;
+// const SetImage = styled.div`
+//   width: 247px;
+//   height: 247px;
+//   border: 8px solid ${PALLETS.BLUE};
+//   border-radius: 50%;
+//   margin: 20px 18px;
+// `;
 
 const LoginInput = styled.div`
   height: 180px;
