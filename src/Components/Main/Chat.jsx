@@ -7,20 +7,16 @@ import { useSelector } from 'react-redux';
 import ChatContentList from './ChatContentList';
 
 const Chat = () => {
-  const chatList = useSelector(state=>state.message);
+  const chatList = useSelector((state) => state.message);
 
   return (
     <ChatBar>
-      <ChatTitle>Here is OnBasic</ChatTitle>
+      <ChatTitle>OnBasic Room</ChatTitle>
       <Container>
-      {chatList &&
-        chatList.map((chatItem, idx)=>{
-        return(
-          <ChatContentList 
-            key={idx}
-            chatItem={chatItem}
-          />)
-      })}
+        {chatList &&
+          chatList.map((chatItem, idx) => {
+            return <ChatContentList key={idx} chatItem={chatItem} />;
+          })}
       </Container>
       <InputContent>
         <Input
@@ -43,12 +39,16 @@ const ChatBar = styled.div`
 `;
 
 const ChatTitle = styled.div`
-  display: flex;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  width: 100%;
   height: 50px;
   line-height: 50px;
   color: ${PALLETS.WHITE};
   background-color: ${PALLETS.BLUE};
   font-size: 24px;
+  font-weight: 600;
 `;
 
 const Container = styled.div`
