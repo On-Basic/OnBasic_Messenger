@@ -3,14 +3,11 @@ import styled from 'styled-components';
 import { PALLETS } from 'Styles/theme';
 import { Input } from 'Components/common/Input';
 import Button from 'Components/common/Button';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ChatContentList from './ChatContentList';
 
 const Chat = () => {
-  const dispatch = useDispatch();
-
   const userName = useSelector((state) => state.login.userName);
-
   console.log(userName);
 
   return (

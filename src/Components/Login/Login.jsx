@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { Input } from 'Components/common/Input';
 import Button from 'Components/common/Button';
 import { PALLETS } from 'Styles/theme';
@@ -31,7 +30,7 @@ const Login = () => {
       userName: userName,
     });
     submitCheck
-      ? alert(`${userName}` + '님 환영합니다!!')
+      ? alert(`${userName}님 환영합니다!!`)
       : alert('아이디와 이름 모두 입력해주세요.');
     navigate('/main');
   };
