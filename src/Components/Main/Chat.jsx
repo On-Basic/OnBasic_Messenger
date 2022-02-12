@@ -32,7 +32,7 @@ const Chat = () => {
 export default Chat;
 
 const ChatBar = styled.div`
-  width: 60%;
+  width: 40%;
   background-color: ${PALLETS.SKY};
   margin: 5px auto;
 `;
