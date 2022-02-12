@@ -1,33 +1,27 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
 import { PALLETS } from 'Styles/theme';
-import {Input} from 'Components/common/Input';
+import { Input } from 'Components/common/Input';
 import Button from 'Components/common/Button';
+import ChatContentList from 'Components/Messege/ChatContentList';
 import { DaProfile } from 'Assets/Images';
 
 const Chat = () => {
   return (
     <ChatBar>
-      <ChatTitle>
-        Here is OnBasic
-      </ChatTitle>
-      <ChatContent />
+      <ChatTitle>Here is OnBasic</ChatTitle>
+      <ChatContentList />
       <InputContent>
         <Input
           type="text"
           name="ChatContent"
           placeholder="메시지를 입력하세요."
         />
-        <Button
-          width="130px"
-          height="50px"
-          fontSize="25px"
-          Content="전송"
-        />
+        <Button width="130px" height="50px" fontSize="25px" Content="전송" />
       </InputContent>
     </ChatBar>
-  )
-}
+  );
+};
 
 export default Chat;
 
@@ -45,10 +39,7 @@ const ChatTitle = styled.div`
   font-size: 24px;
 `;
 
-const ChatContent = styled.div`
-  height: 675px;
-  overflow-y: scroll;
-`;
+const ChatContent = styled.div``;
 
 const InputContent = styled.div`
   height: 50px;
