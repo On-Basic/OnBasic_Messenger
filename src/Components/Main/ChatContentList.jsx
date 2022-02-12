@@ -1,25 +1,41 @@
+import React, { useEffect, useCallback, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { PALLETS } from 'Styles/theme';
 import ReButton from 'Components/common/ReButton';
 
-const ChatContentList = ({chatItem}) => {
+const ChatContentList = ({ chatItem }) => {
+  const scrolleRef = useRef(null);
+  const chatState = useSelector((state) => state.message);
+
+  const scrollToBottom = useCallback(() => {
+    if (chatState) {
+      scrolleRef.current?.scrollIntoView({
+        block: 'nearest',
+        inline: 'nearest',
+      });
+    }
+  }, [chatState]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [scrollToBottom]);
+
   return (
-      <UserWrapper>
-        <div>
-          <ChatMessageProfile
-            src={chatItem.profileImage}
-          />
-        </div>
-        <div>
-          <UserInfo>
-            <UserInfo>{chatItem.userName}</UserInfo>
-          </UserInfo>
-          <ChatMessageContent>
-            <Content>{chatItem.message}</Content>
-          </ChatMessageContent>
-        </div>
-        <ReButton />
-      </UserWrapper>
+    <UserWrapper>
+      <div>
+        <ChatMessageProfile src={chatItem.profileImage} ref={scrolleRef} />
+      </div>
+      <div>
+        <UserInfo>
+          <UserInfo>{chatItem.userName}</UserInfo>
+        </UserInfo>
+        <ChatMessageContent>
+          <Content>{chatItem.message}</Content>
+        </ChatMessageContent>
+      </div>
+      <ReButton />
+    </UserWrapper>
   );
 };
 
