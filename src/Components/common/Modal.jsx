@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { PALLETS } from 'Styles/theme';
 import Button from 'Components/common/Button';
-import { useDispatch, useSelector } from 'react-redux';
 
 const Modal = ({
   className,
