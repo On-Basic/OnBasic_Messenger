@@ -3,20 +3,19 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { PALLETS } from 'Styles/theme';
 import Button from 'Components/common/Button';
+import { useDispatch, useSelector } from 'react-redux';
 
-function Modal({
+const Modal = ({
   className,
   onClose,
   maskClosable,
   closable,
   visible,
   children,
-}) {
-  const onMaskClick = (e) => {
-    if (e.target === e.currentTarget) {
-      onClose(e);
-    }
-  };
+  message,
+}) => {
+  // const dispatch = useDispatch();
+  console.log(message);
 
   const close = (e) => {
     if (onClose) {
@@ -24,12 +23,16 @@ function Modal({
     }
   };
 
+  const Delete = (e) => {
+    // dispatch({type: 'DELETE_CHAT', key: message});
+    if(onClose) onClose(e);
+  }
+
   return (
     <>
       <ModalOverlay visible={visible} />
       <ModalWrapper
         className={className}
-        onClick={maskClosable ? onMaskClick : null}
         tabIndex="-1"
         visible={visible}
       >
@@ -49,7 +52,7 @@ function Modal({
               />
               <Button
                 className="modal-close"
-                ClickFunc={close}
+                ClickFunc={Delete}
                 Width="120px"
                 Height="50px"
                 fontSize="25px"
