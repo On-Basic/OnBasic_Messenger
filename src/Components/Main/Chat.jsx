@@ -38,12 +38,11 @@ const Chat = () => {
 
   return (
     <ChatBar>
-      <ChatTitle>OnBasic Room</ChatTitle>
       <Container>
-        {chatList &&
+        {/* {chatList &&
           chatList.map((chatItem, idx) => {
             return <ChatContentList key={idx} chatItem={chatItem} />;
-          })}
+          })} */}
       </Container>
       <InputContent>
         <Input
@@ -69,28 +68,13 @@ const Chat = () => {
 export default Chat;
 
 const ChatBar = styled.div`
-  width: 40%;
   background-color: ${PALLETS.SKY};
-  margin: 5px auto;
-`;
-
-const ChatTitle = styled.div`
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
-  color: ${PALLETS.WHITE};
-  background-color: ${PALLETS.BLUE};
-  font-size: 24px;
-  font-weight: 600;
 `;
 
 const Container = styled.div`
   padding: 20px;
   z-index: 10;
-  height: 650px;
+  height: 700px;
   overflow-y: scroll;
 `;
 
