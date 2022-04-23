@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from 'Components/common/Header';
 import Login from 'Components/Login/Login';
-import ProfileImage from 'Components/common/ProfileImage';
 import { PALLETS } from 'Styles/theme';
 import styled from 'styled-components';
 
@@ -10,9 +9,7 @@ const LoginPage = () => {
     <Container>
       <Header />
       <LoginWrapper>
-        {/* <Logo src={MainLOGO} /> */}
         <MainLogo>OnBasic Messenger</MainLogo>
-        <ProfileImage />
         <LoginInput>
           <Login />
         </LoginInput>
@@ -47,17 +44,10 @@ const MainLogo = styled.div`
   margin: 10px 0;
 `;
 
-// const SetImage = styled.div`
-//   width: 247px;
-//   height: 247px;
-//   border: 8px solid ${PALLETS.BLUE};
-//   border-radius: 50%;
-//   margin: 20px 18px;
-// `;
-
 const LoginInput = styled.div`
   height: 180px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 100px 0;
 `;
