@@ -3,11 +3,9 @@ import { Input } from 'Components/common/Input';
 import Button from 'Components/common/Button';
 import { PALLETS } from 'Styles/theme';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
 const Login = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [userData, setUserData] = useState({
     userId: '',
     userName: '',
@@ -24,11 +22,6 @@ const Login = () => {
   const submitCheck = userId.length > 0 && userName.length > 0;
 
   const submitUserData = () => {
-    dispatch({
-      type: 'USER_LOGIN',
-      userId: userId,
-      userName: userName,
-    });
     submitCheck
       ? alert(`${userName}님 환영합니다!!`)
       : alert('아이디와 이름 모두 입력해주세요.');

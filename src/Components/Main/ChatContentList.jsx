@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { PALLETS } from 'Styles/theme';
 import ReButton from 'Components/common/ReButton';
@@ -7,21 +6,7 @@ import Modal from 'Components/common/Modal';
 
 const ChatContentList = ({ chatItem }) => {
   const scrolleRef = useRef(null);
-  const chatState = useSelector((state) => state.message);
   const [modalVisible, setmodalVisible] = useState(false);
-
-  const scrollToBottom = useCallback(() => {
-    if (chatState) {
-      scrolleRef.current?.scrollIntoView({
-        block: 'nearest',
-        inline: 'nearest',
-      });
-    }
-  }, [chatState]);
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [scrollToBottom]);
 
   const Replay = () => {
     console.log('답장 ... ');

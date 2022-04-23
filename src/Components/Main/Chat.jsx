@@ -3,29 +3,17 @@ import styled from 'styled-components';
 import { PALLETS } from 'Styles/theme';
 import { Input } from 'Components/common/Input';
 import Button from 'Components/common/Button';
-import { useSelector, useDispatch } from 'react-redux';
-import ChatContentList from './ChatContentList';
 
 const Chat = () => {
-  const dispatch = useDispatch();
 
-  const userId = useSelector(state=>state.login.userId);
-  const userName = useSelector(state=>state.login.userName);
-  const chatList = useSelector((state) => state.message);
 
-  const [InputMessage, setInputMessage] = useState();
+  const [InputMessage, setInputMessage] = useState('');
 
   const onChange = e => {
     setInputMessage(e.target.value);
   };
 
   const Send = () => {
-    dispatch({
-      type: 'SEND_CHAT',
-      userId: userId,
-      userName: userName,
-      message: InputMessage,
-    });
     setInputMessage('');
   };
 
@@ -39,10 +27,7 @@ const Chat = () => {
   return (
     <ChatBar>
       <Container>
-        {/* {chatList &&
-          chatList.map((chatItem, idx) => {
-            return <ChatContentList key={idx} chatItem={chatItem} />;
-          })} */}
+        
       </Container>
       <InputContent>
         <Input
