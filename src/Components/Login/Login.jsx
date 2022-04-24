@@ -9,7 +9,6 @@ const Login = () => {
   const [userData, setUserData] = useState({
     userId: '',
     userName: '',
-    profileImage: '',
   });
 
   const { userId, userName } = userData;
@@ -22,6 +21,7 @@ const Login = () => {
   const submitCheck = userId.length > 0 && userName.length > 0;
 
   const submitUserData = () => {
+    console.log(userData);
     submitCheck
       ? alert(`${userName}님 환영합니다!!`)
       : alert('아이디와 이름 모두 입력해주세요.');
