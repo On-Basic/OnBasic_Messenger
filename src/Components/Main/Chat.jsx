@@ -4,16 +4,26 @@ import { PALLETS } from 'Styles/theme';
 import { Input } from 'Components/common/Input';
 import Button from 'Components/common/Button';
 import ChatContentList from './ChatContentList';
-import { INITIAL_MESSAGE } from 'userData';
+import {useSelector, useDispatch} from 'react-redux'
 
 const Chat = () => {
   const [InputMessage, setInputMessage] = useState('');
+  const dispatch = useDispatch();
+  const userId = useSelector(state => state.login.userId);
+  const userName = useSelector(state => state.login.userName);
   const onChange = e => {
     setInputMessage(e.target.value);
   };
 
   const Send = () => {
     setInputMessage('');
+    dispatch({
+      type: 'ADD_CHAT',
+      userId: userId,
+      userName: userName,
+      message: InputMessage,
+     });
+     setInputMessage('');
   };
 
   const pressEnter = e => {
@@ -26,7 +36,7 @@ const Chat = () => {
   return (
     <ChatBar>
       <Container>
-        <ChatContentList chatItem={INITIAL_MESSAGE}/>
+        <ChatContentList/>
       </Container>
       <InputContent>
         <Input

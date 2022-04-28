@@ -5,7 +5,7 @@ import ReButton from 'Components/common/ReButton';
 import Modal from 'Components/common/Modal';
 import { useSelector } from 'react-redux';
 
-const ChatContentList = ({ chatItem }) => {
+const ChatContentList = () => {
   const scrollRef = useRef(null);
   const chatList = useSelector(state => state.messages);
   const [modalVisible, setmodalVisible] = useState(false);
