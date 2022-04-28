@@ -1,13 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import { PALLETS } from 'Styles/theme';
+import { useState } from 'react';
 import Button from 'Components/common/Button';
 
 const Modal = () => {
-  const close = (e) => {};
+  const [modalVisible, setmodalVisible] = useState(true);
+  const close = (e) => {
+    setmodalVisible(!modalVisible);
+  };
   const Delete = (e) => {};
   return (
-    <Container>
+    <>
+    {modalVisible &&
+      <Container>
       <ModalWrapper>
         <ModalWindow>
           <Title>메시지 삭제</Title>
@@ -37,7 +43,8 @@ const Modal = () => {
           </BtnWrapper>
         </ModalWindow>
       </ModalWrapper>
-    </Container>
+    </Container>}
+    </>
   );
 }
 
