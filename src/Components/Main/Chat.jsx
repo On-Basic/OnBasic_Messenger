@@ -3,12 +3,11 @@ import styled from 'styled-components';
 import { PALLETS } from 'Styles/theme';
 import { Input } from 'Components/common/Input';
 import Button from 'Components/common/Button';
+import ChatContentList from './ChatContentList';
+import { INITIAL_MESSAGE } from 'userData';
 
 const Chat = () => {
-
-
   const [InputMessage, setInputMessage] = useState('');
-
   const onChange = e => {
     setInputMessage(e.target.value);
   };
@@ -27,7 +26,7 @@ const Chat = () => {
   return (
     <ChatBar>
       <Container>
-        
+        <ChatContentList chatItem={INITIAL_MESSAGE}/>
       </Container>
       <InputContent>
         <Input

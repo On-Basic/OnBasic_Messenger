@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { PALLETS } from 'Styles/theme';
 import ReButton from 'Components/common/ReButton';
 import Modal from 'Components/common/Modal';
+import { useSelector } from 'react-redux';
 
 const ChatContentList = ({ chatItem }) => {
-  const scrolleRef = useRef(null);
+  const scrollRef = useRef(null);
+  const chatList = useSelector(state => state.messages);
   const [modalVisible, setmodalVisible] = useState(false);
 
   const Replay = () => {
@@ -14,18 +16,13 @@ const ChatContentList = ({ chatItem }) => {
 
   const Remove = () => {
     setmodalVisible(!modalVisible);
-    console.log(modalVisible);
-  }
-
-  const closeModal = () => {
-    setmodalVisible(false);
   }
 
   return (
-    <UserWrapper>
-      <div>
-        <ChatMessageProfile src={chatItem.profileImage} ref={scrolleRef} />
-      </div>
+    <div ref={scrollRef}>
+    {chatList.map((chatItem, idx) => {
+      return(
+        <UserWrapper>
       <div>
         <UserInfo>
           <UserInfo>{chatItem.userName}</UserInfo>
@@ -37,17 +34,13 @@ const ChatContentList = ({ chatItem }) => {
       <ReButton 
           ReplayFunc={Replay}
           RemoveFunc={Remove}
-      />
-       {modalVisible && 
-          <Modal
-            visible={modalVisible}
-            closable={true}
-            maskClosable={true}
-            onClose={closeModal}
-          >
-            삭제하시겠습니까?
-          </Modal>}        
+      />     
     </UserWrapper>
+      )
+    })}
+    {modalVisible&& 
+     <Modal />}   
+  </div>
   );
 };
 
@@ -56,14 +49,6 @@ export default ChatContentList;
 const UserWrapper = styled.div`
   display: flex;
   margin: 10px 0;
-`;
-
-const ChatMessageProfile = styled.img`
-  object-fit: cover;
-  width: 70px;
-  height: 70px;
-  border: 2px solid ${PALLETS.WHITE};
-  border-radius: 50%;
 `;
 
 const UserInfo = styled.div`
