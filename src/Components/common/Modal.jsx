@@ -65,9 +65,10 @@ const ModalWrapper = styled.div`
 const ModalWindow = styled.div`
   width: 400px;
   height: 300px;
-  background-color: ${PALLETS.SKY};
+  background-color: ${PALLETS.WHITE};
   position: relative;
   padding: 20px;
+  border-radius: 10px;
 `;
 
 const Title = styled.h2`
