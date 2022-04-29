@@ -35,11 +35,11 @@ const ChatContentList = () => {
           ReplayFunc={Replay}
           RemoveFunc={Remove}
       />     
+    {modalVisible&& 
+     <Modal contentId={idx}/>}
     </UserWrapper>
       )
-    })}
-    {modalVisible&& 
-     <Modal />}   
+    })}   
   </div>
   );
 };
