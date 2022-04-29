@@ -3,19 +3,20 @@ import styled from 'styled-components';
 import { PALLETS } from 'Styles/theme';
 import ReButton from 'Components/common/ReButton';
 import Modal from 'Components/common/Modal';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 const ChatContentList = () => {
   const scrollRef = useRef(null);
   const chatList = useSelector(state => state.messages);
-  const [modalVisible, setmodalVisible] = useState(false);
+  const isModalOpen = useSelector(state => state.modals.showModal);
+  const dispatch = useDispatch();
 
   const Replay = () => {
     console.log('답장 ... ');
   }
 
   const Remove = () => {
-    setmodalVisible(!modalVisible);
+    dispatch({ type: 'MODAL_OPEN' });
   }
 
   return (
@@ -35,8 +36,7 @@ const ChatContentList = () => {
           ReplayFunc={Replay}
           RemoveFunc={Remove}
       />     
-    {modalVisible&& 
-     <Modal contentId={idx}/>}
+    {isModalOpen&&<Modal contentId={idx}/>}
     </UserWrapper>
       )
     })}   

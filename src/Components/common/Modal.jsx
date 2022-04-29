@@ -1,31 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
 import { PALLETS } from 'Styles/theme';
-import { useState } from 'react';
 import Button from 'Components/common/Button';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Modal = ({contentId}) => {
-  const [modalVisible, setmodalVisible] = useState(true);
   const dispatch = useDispatch();
   const chatItem = useSelector(state => state.messages[contentId]);
 
-  const close = (e) => {
-    setmodalVisible(!modalVisible);
+  const close = () => {
+    dispatch({ type: 'MODAL_CLOSE' });
   };
+
   const Delete = () => {
     dispatch({ type: 'DELETE_CHAT', key: contentId });
-    setmodalVisible(!modalVisible);
+    close();
   };
   return (
     <>
-    {modalVisible &&
       <Container>
       <ModalWrapper>
         <ModalWindow>
           <Title>메시지 삭제</Title>
           <Content>메시지를 삭제하시겠습니까?</Content>
-          <MsgWrapper>...메시지가 삭제됩니다.</MsgWrapper>
+          <MsgWrapper>{chatItem.message}...메시지가 삭제됩니다.</MsgWrapper>
           <BtnWrapper>
             <Button
               ClickFunc={close}
@@ -48,7 +46,7 @@ const Modal = ({contentId}) => {
           </BtnWrapper>
         </ModalWindow>
       </ModalWrapper>
-    </Container>}
+    </Container>
     </>
   );
 }
