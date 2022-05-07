@@ -9,6 +9,7 @@ const ChatContentList = () => {
   const scrollRef = useRef(null);
   const chatList = useSelector(state => state.messages);
   const isModalOpen = useSelector(state => state.modals.showModal);
+  const [currentId, setCurrentId] = useState();
   const dispatch = useDispatch();
 
   const Replay = () => {
@@ -17,7 +18,12 @@ const ChatContentList = () => {
 
   const Remove = () => {
     dispatch({ type: 'MODAL_OPEN' });
+    handleCurrentId();
   }
+
+  const handleCurrentId = id => {
+    setCurrentId(id);
+  };
 
   return (
     <div ref={scrollRef}>
@@ -36,7 +42,7 @@ const ChatContentList = () => {
           ReplayFunc={Replay}
           RemoveFunc={Remove}
       />     
-    {isModalOpen&&<Modal contentId={idx}/>}
+    {isModalOpen&&<Modal contentId={currentId}/>}
     </UserWrapper>
       )
     })}   

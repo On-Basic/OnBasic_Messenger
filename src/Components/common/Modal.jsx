@@ -14,6 +14,7 @@ const Modal = ({contentId}) => {
 
   const Delete = () => {
     dispatch({ type: 'DELETE_CHAT', key: contentId });
+    console.log(contentId);
     close();
   };
   return (
@@ -23,7 +24,7 @@ const Modal = ({contentId}) => {
         <ModalWindow>
           <Title>메시지 삭제</Title>
           <Content>메시지를 삭제하시겠습니까?</Content>
-          <MsgWrapper>{chatItem.message}...메시지가 삭제됩니다.</MsgWrapper>
+          <MsgWrapper>{chatItem}...메시지가 삭제됩니다.</MsgWrapper>
           <BtnWrapper>
             <Button
               ClickFunc={close}
