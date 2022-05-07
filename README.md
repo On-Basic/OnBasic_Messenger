@@ -11,7 +11,6 @@
 
 ## 배포 주소
 
-[배포 사이트 바로가기](https://zealous-dubinsky-0c01b9.netlify.app/)
 
 ## 과제 구현 목록
 
