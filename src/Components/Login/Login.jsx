@@ -11,7 +11,6 @@ const Login = () => {
   const [userData, setUserData] = useState({
     userId: '',
     userName: '',
-    profileImage: '',
   });
 
   const { userId, userName } = userData;
@@ -25,9 +24,9 @@ const Login = () => {
 
   const submitUserData = () => {
     dispatch({
-      type: 'USER_LOGIN',
+      type: 'LOGIN',
       userId: userId,
-      userName: userName,
+      userName: userName
     });
     submitCheck
       ? alert(`${userName}님 환영합니다!!`)

@@ -3,30 +3,27 @@ import styled from 'styled-components';
 import { PALLETS } from 'Styles/theme';
 import { Input } from 'Components/common/Input';
 import Button from 'Components/common/Button';
-import { useSelector, useDispatch } from 'react-redux';
 import ChatContentList from './ChatContentList';
+import {useSelector, useDispatch} from 'react-redux'
 
 const Chat = () => {
+  const [InputMessage, setInputMessage] = useState('');
   const dispatch = useDispatch();
-
-  const userId = useSelector(state=>state.login.userId);
-  const userName = useSelector(state=>state.login.userName);
-  const chatList = useSelector((state) => state.message);
-
-  const [InputMessage, setInputMessage] = useState();
-
+  const userId = useSelector(state => state.login.userId);
+  const userName = useSelector(state => state.login.userName);
   const onChange = e => {
     setInputMessage(e.target.value);
   };
 
   const Send = () => {
+    setInputMessage('');
     dispatch({
-      type: 'SEND_CHAT',
+      type: 'ADD_CHAT',
       userId: userId,
       userName: userName,
       message: InputMessage,
-    });
-    setInputMessage('');
+     });
+     setInputMessage('');
   };
 
   const pressEnter = e => {
@@ -38,12 +35,8 @@ const Chat = () => {
 
   return (
     <ChatBar>
-      <ChatTitle>OnBasic Room</ChatTitle>
       <Container>
-        {chatList &&
-          chatList.map((chatItem, idx) => {
-            return <ChatContentList key={idx} chatItem={chatItem} />;
-          })}
+        <ChatContentList/>
       </Container>
       <InputContent>
         <Input
@@ -69,28 +62,13 @@ const Chat = () => {
 export default Chat;
 
 const ChatBar = styled.div`
-  width: 40%;
   background-color: ${PALLETS.SKY};
-  margin: 5px auto;
-`;
-
-const ChatTitle = styled.div`
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
-  color: ${PALLETS.WHITE};
-  background-color: ${PALLETS.BLUE};
-  font-size: 24px;
-  font-weight: 600;
 `;
 
 const Container = styled.div`
   padding: 20px;
   z-index: 10;
-  height: 650px;
+  height: 700px;
   overflow-y: scroll;
 `;
 

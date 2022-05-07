@@ -1,46 +1,35 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { PALLETS } from 'Styles/theme';
 import ReButton from 'Components/common/ReButton';
 import Modal from 'Components/common/Modal';
+import { useSelector, useDispatch } from 'react-redux';
 
-const ChatContentList = ({ chatItem }) => {
-  const scrolleRef = useRef(null);
-  const chatState = useSelector((state) => state.message);
-  const [modalVisible, setmodalVisible] = useState(false);
-
-  const scrollToBottom = useCallback(() => {
-    if (chatState) {
-      scrolleRef.current?.scrollIntoView({
-        block: 'nearest',
-        inline: 'nearest',
-      });
-    }
-  }, [chatState]);
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [scrollToBottom]);
+const ChatContentList = () => {
+  const scrollRef = useRef(null);
+  const chatList = useSelector(state => state.messages);
+  const isModalOpen = useSelector(state => state.modals.showModal);
+  const [currentId, setCurrentId] = useState();
+  const dispatch = useDispatch();
 
   const Replay = () => {
     console.log('답장 ... ');
   }
 
   const Remove = () => {
-    setmodalVisible(!modalVisible);
-    console.log(modalVisible);
+    dispatch({ type: 'MODAL_OPEN' });
+    handleCurrentId();
   }
 
-  const closeModal = () => {
-    setmodalVisible(false);
-  }
+  const handleCurrentId = id => {
+    setCurrentId(id);
+  };
 
   return (
-    <UserWrapper>
-      <div>
-        <ChatMessageProfile src={chatItem.profileImage} ref={scrolleRef} />
-      </div>
+    <div ref={scrollRef}>
+    {chatList.map((chatItem, idx) => {
+      return(
+        <UserWrapper>
       <div>
         <UserInfo>
           <UserInfo>{chatItem.userName}</UserInfo>
@@ -52,17 +41,12 @@ const ChatContentList = ({ chatItem }) => {
       <ReButton 
           ReplayFunc={Replay}
           RemoveFunc={Remove}
-      />
-       {modalVisible && 
-          <Modal
-            visible={modalVisible}
-            closable={true}
-            maskClosable={true}
-            onClose={closeModal}
-          >
-            삭제하시겠습니까?
-          </Modal>}        
+      />     
+    {isModalOpen&&<Modal contentId={currentId}/>}
     </UserWrapper>
+      )
+    })}   
+  </div>
   );
 };
 
@@ -71,14 +55,6 @@ export default ChatContentList;
 const UserWrapper = styled.div`
   display: flex;
   margin: 10px 0;
-`;
-
-const ChatMessageProfile = styled.img`
-  object-fit: cover;
-  width: 70px;
-  height: 70px;
-  border: 2px solid ${PALLETS.WHITE};
-  border-radius: 50%;
 `;
 
 const UserInfo = styled.div`

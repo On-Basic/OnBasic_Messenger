@@ -1,117 +1,91 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { PALLETS } from 'Styles/theme';
 import Button from 'Components/common/Button';
+import { useDispatch, useSelector } from 'react-redux';
 
-const Modal = ({
-  className,
-  onClose,
-  maskClosable,
-  closable,
-  visible,
-  children,
-  message,
-}) => {
-  // const dispatch = useDispatch();
-  console.log(message);
+const Modal = ({contentId}) => {
+  const dispatch = useDispatch();
+  const chatItem = useSelector(state => state.messages[contentId]);
 
-  const close = (e) => {
-    if (onClose) {
-      onClose(e);
-    }
+  const close = () => {
+    dispatch({ type: 'MODAL_CLOSE' });
   };
 
-  const Delete = (e) => {
-    // dispatch({type: 'DELETE_CHAT', key: message});
-    if(onClose) onClose(e);
-  }
-
+  const Delete = () => {
+    dispatch({ type: 'DELETE_CHAT', key: contentId });
+    console.log(contentId);
+    close();
+  };
   return (
     <>
-      <ModalOverlay visible={visible} />
-      <ModalWrapper
-        className={className}
-        tabIndex="-1"
-        visible={visible}
-      >
-        <ModalInner tabIndex="0" className="modal-inner">
-          {children}
-          {closable && (
-            <Wrapper>
-              <Button
-                className="modal-close"
-                ClickFunc={close}
-                Width="120px"
-                Height="50px"
-                fontSize="25px"
-                backgroundColor={PALLETS.WHITE}
-                Color={PALLETS.BLUE}
-                Content="취소"
-              />
-              <Button
-                className="modal-close"
-                ClickFunc={Delete}
-                Width="120px"
-                Height="50px"
-                fontSize="25px"
-                backgroundColor={PALLETS.BLUE}
-                Color={PALLETS.WHITE}
-                Content="확인"
-              />
-            </Wrapper>
-          )}
-        </ModalInner>
+      <Container>
+      <ModalWrapper>
+        <ModalWindow>
+          <Title>메시지 삭제</Title>
+          <Content>메시지를 삭제하시겠습니까?</Content>
+          <MsgWrapper>{chatItem}...메시지가 삭제됩니다.</MsgWrapper>
+          <BtnWrapper>
+            <Button
+              ClickFunc={close}
+              Width="100px"
+              Height="50px"
+              fontSize="20px"
+              backgroundColor={PALLETS.WHITE}
+              Color={PALLETS.BLUE}
+              Content="취소"
+            />
+            <Button
+              ClickFunc={Delete}
+              Width="100px"
+              Height="50px"
+              fontSize="20px"
+              backgroundColor={PALLETS.BLUE}
+              Color={PALLETS.WHITE}
+              Content="삭제"
+            />
+          </BtnWrapper>
+        </ModalWindow>
       </ModalWrapper>
+    </Container>
     </>
   );
 }
 
-Modal.propTypes = {
-  visible: PropTypes.bool,
-};
+const Container = styled.div``;
 
 const ModalWrapper = styled.div`
-  box-sizing: border-box;
-  display: ${(props) => (props.visible ? 'block' : 'none')};
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1000;
-  overflow: auto;
-  outline: 0;
-`;
-
-const ModalOverlay = styled.div`
-  box-sizing: border-box;
-  display: ${(props) => (props.visible ? 'block' : 'none')};
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.6);
   z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
-const ModalInner = styled.div`
-  box-sizing: border-box;
-  position: relative;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
-  background-color: ${PALLETS.WHITE};
-  border-radius: 10px;
-  padding: 10px;
-  width: 500px;
+const ModalWindow = styled.div`
+  width: 400px;
   height: 300px;
-  top: 50%;
-  transform: translateY(-50%);
-  margin: 0 auto;
-  padding: 50px 30px;
+  background-color: ${PALLETS.WHITE};
+  position: relative;
+  padding: 20px;
+  border-radius: 10px;
 `;
 
-const Wrapper = styled.div`
+const Title = styled.h2`
+  padding: 0 50px 20px 0;
+`;
+
+const Content = styled.h4``;
+
+const MsgWrapper = styled.div`
+  font-size: 14px;
+`;
+
+const BtnWrapper = styled.div`
   display: flex;
   margin: 150px 100px;
 `;

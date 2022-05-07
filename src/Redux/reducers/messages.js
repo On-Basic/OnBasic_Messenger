@@ -1,21 +1,21 @@
-import { INITIAL_MESSAGE } from 'userData';
+import { INITIAL_MESSAGE } from "userData";
 
-const messenger = (state = INITIAL_MESSAGE, action) => {
+const messages = (state = INITIAL_MESSAGE, action) => {
   switch (action.type) {
-    case 'SEND_CHAT':
+    case 'ADD_CHAT':
       return [
         ...state,
         {
           userId: action.userId,
           userName: action.userName,
-          profileImage: action.profileImage,
-          sendDate: action.sendDate,
           message: action.message,
         },
       ];
+    case 'DELETE_CHAT':
+      return state.filter((chat, idx) => idx !== action.key);
     default:
       return state;
   }
 };
 
-export default messenger;
+export default messages;
